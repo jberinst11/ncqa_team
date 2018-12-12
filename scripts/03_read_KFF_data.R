@@ -107,3 +107,26 @@ economic_distress <-fread("raw_data/KFF_tables_2016/Measures of State Economic D
 economic_distress<-economic_distress[economic_distress$Location %in% states,]
 names(economic_distress) <- c("year", "state", "forclosure_rate", "per_change_mon_umployment", "per_change_mon_SNAP", "economic_distress_rank")
 
+#Adults Reporting Mental Illness in the Past Year
+#https://www.kff.org/other/state-indicator/poor-mental-health-among-adults/?currentTimeframe=1&sortModel=%7B%22colId%22:%22Location%22,%22sort%22:%22asc%22%7D
+
+mental_illness <-fread("raw_data/KFF_tables_2016/Adults Reporting Mental Illness in the Past Year.csv")
+mental_illness<-mental_illness[mental_illness$Location %in% states,-c(3,5)]
+names(mental_illness) <- c("year", "state", "any_mental_illness", "serious_mental_illness")
+
+#Number of Cancer Deaths per 100000 Population.csv
+#https://www.kff.org/other/state-indicator/cancer-death-rate-per-100000/?currentTimeframe=0&sortModel=%7B%22colId%22:%22Location%22,%22sort%22:%22asc%22%7D
+#Keep only 50 states
+cancer_deaths <-fread("raw_data/KFF_tables_2016/Number of Cancer Deaths per 100000 Population.csv")
+cancer_deaths <-cancer_deaths[cancer_deaths$Location %in% states,]
+names(cancer_deaths) <- c("year", "state", "cancer_death_rate")
+
+#Number of Deaths per 100000 Population
+#https://www.kff.org/other/state-indicator/death-rate-per-100000/?currentTimeframe=0&sortModel=%7B%22colId%22:%22Location%22,%22sort%22:%22asc%22%7D
+#Keep only 50 states
+
+death_rate <-fread("raw_data/KFF_tables_2016/Number of Deaths per 100000 Population.csv")
+death_rate  <-death_rate [death_rate$Location %in% states, -4]
+names(death_rate)  <- c("year", "state", "death_rate")
+
+
